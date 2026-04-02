@@ -36,6 +36,11 @@
       cursor: pointer;
     }
 
+    .middle button:hover {
+      background: #00ffcc;
+      color: black;
+    }
+
     .right {
       text-align: right;
       font-size: 12px;
@@ -44,6 +49,36 @@
     .content {
       text-align: center;
       padding: 40px;
+      transition: all 0.4s ease;
+      opacity: 1;
+    }
+
+    /* ANIMATION */
+    .fade-out {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* UPDATE BOX */
+    .box {
+      margin: 20px auto;
+      padding: 15px;
+      width: 250px;
+      background: #1e293b;
+      border-radius: 10px;
+      border: 2px solid #00ffcc;
+    }
+
+    .box-title {
+      font-weight: bold;
+      border-bottom: 1px solid #00ffcc;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     .footer {
@@ -64,7 +99,8 @@
 
   <div class="middle">
     <button onclick="page('about')">About</button>
-    <button onclick="page('more')">More</button>
+    <button onclick="page('updates')">Updates</button>
+    <button onclick="page('settings')">Settings</button>
   </div>
 
   <div class="right">
@@ -73,7 +109,7 @@
 </div>
 
 <div class="content" id="content">
-  <h1>Welcome To My First Website</h1>
+  <h1>Welcome To My First Website 👋</h1>
 </div>
 
 <div class="footer">
@@ -83,8 +119,50 @@
 <script>
 function page(p){
   let c = document.getElementById("content");
-  if(p=="about") c.innerHTML="<h1>About</h1>";
-  if(p=="more") c.innerHTML="<h1>More</h1>";
+
+  // fade out
+  c.classList.add("fade-out");
+
+  setTimeout(() => {
+
+    if(p=="about"){
+      c.innerHTML = "<h1>About</h1><p>This is about Shinywave 😎</p>";
+    }
+
+    if(p=="updates"){
+      c.innerHTML = `
+        <h1>Updates</h1>
+
+        <div class="box">
+          <div class="box-title">Update V2.4</div>
+          TesT
+        </div>
+
+        <div class="box">
+          <div class="box-title">Update V2.3</div>
+          Added new UI
+        </div>
+
+        <div class="box">
+          <div class="box-title">Update V2.2</div>
+          Bug fixes
+        </div>
+      `;
+    }
+
+    if(p=="settings"){
+      c.innerHTML = `
+        <h1>Settings</h1>
+        <p>More settings coming soon ⚙️</p>
+        <button onclick="alert('Dark mode already enabled 😎')">Toggle Theme</button>
+      `;
+    }
+
+    // fade in
+    c.classList.remove("fade-out");
+    c.classList.add("fade-in");
+
+  }, 200);
 }
 </script>
 
