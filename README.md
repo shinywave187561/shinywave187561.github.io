@@ -1,6 +1,6 @@
 # shinywave Website
 
-Welcome 👋  
+Welcome to My first website
 
 ---
 
