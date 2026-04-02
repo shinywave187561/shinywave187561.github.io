@@ -1,11 +1,11 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Shinywave Website</title>
-  <meta name="description" content="Shinywave official website. Explore projects and more.">
+  <title>Shinywave - Website</title>
+  <meta name="description" content="Shinywave official website">
 
   <style>
     body {
@@ -15,6 +15,7 @@
       color: white;
     }
 
+    /* TOPBAR */
     .topbar {
       display: flex;
       align-items: center;
@@ -59,26 +60,39 @@
       color: #94a3b8;
     }
 
+    /* CONTENT */
     .content {
-      padding: 30px;
+      padding: 40px;
       text-align: center;
     }
 
+    /* FOOTER */
     .footer {
       position: fixed;
       bottom: 0;
       width: 100%;
       background: #020617;
       padding: 10px;
-      text-align: left;
       border-top: 2px solid #00ffcc;
       font-size: 14px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      .middle {
+        overflow-x: auto;
+      }
+
+      .middle button {
+        flex-shrink: 0;
+      }
     }
   </style>
 </head>
 
 <body>
 
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="left">Shinywave</div>
 
@@ -93,11 +107,13 @@
   </div>
 </div>
 
+<!-- CONTENT -->
 <div class="content" id="content">
   <h1>Welcome 👋</h1>
   <p>Select a page above</p>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
   Powered by Shinywave
 </div>
@@ -107,11 +123,11 @@ function changePage(page) {
   let content = document.getElementById("content");
 
   if(page === "about") {
-    content.innerHTML = "<h1>About</h1><p>This is about Shinywave </p>";
+    content.innerHTML = "<h1>About</h1><p>This is about Shinywave 😎</p>";
   }
 
   if(page === "more") {
-    content.innerHTML = "<h1>More</h1><p>More features soon </p>";
+    content.innerHTML = "<h1>More</h1><p>More features soon 🔥</p>";
   }
 }
 </script>
