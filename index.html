@@ -1,95 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shinywave Website</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shinywave</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f172a;
+  color: white;
+}
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 20px;
-      background: #020617;
-      border-bottom: 2px solid #00ffcc;
-    }
+/* TOPBAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: #020617;
+  border-bottom: 2px solid #00ffcc;
+}
 
-    .left {
-      color: #00ffcc;
-      font-weight: bold;
-    }
+.left {
+  color: #00ffcc;
+  font-weight: bold;
+  font-size: 18px;
+}
 
-    .middle button {
-      margin: 0 5px;
-      padding: 8px 12px;
-      background: #1e293b;
-      border: none;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+.middle {
+  display: flex;
+  gap: 10px;
+}
 
-    .middle button:hover {
-      background: #00ffcc;
-      color: black;
-    }
+.middle button {
+  padding: 8px 12px;
+  background: #1e293b;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    .right {
-      text-align: right;
-      font-size: 12px;
-    }
+.middle button:hover {
+  background: #00ffcc;
+  color: black;
+}
 
-    .content {
-      text-align: center;
-      padding: 40px;
-      transition: all 0.4s ease;
-      opacity: 1;
-    }
+.right {
+  text-align: right;
+  font-size: 12px;
+}
 
-    /* ANIMATION */
-    .fade-out {
-      opacity: 0;
-      transform: translateY(20px);
-    }
+.right button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background: #00ffcc;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-    .fade-in {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* APP WRAPPER */
+#app {
+  transition: all 0.4s ease;
+}
 
-    /* UPDATE BOX */
-    .box {
-      margin: 20px auto;
-      padding: 15px;
-      width: 250px;
-      background: #1e293b;
-      border-radius: 10px;
-      border: 2px solid #00ffcc;
-    }
+/* CONTENT */
+.content {
+  text-align: center;
+  padding: 40px;
+  transition: all 0.4s ease;
+}
 
-    .box-title {
-      font-weight: bold;
-      border-bottom: 1px solid #00ffcc;
-      padding-bottom: 5px;
-      margin-bottom: 10px;
-    }
+.fade-out {
+  opacity: 0;
+  transform: translateY(20px);
+}
 
-    .footer {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      padding: 10px;
-      background: #020617;
-      border-top: 2px solid #00ffcc;
-    }
-  </style>
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FOOTER */
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: #020617;
+  border-top: 2px solid #00ffcc;
+  font-size: 14px;
+}
+
+/* SETTINGS BOX */
+.box {
+  background: #1e293b;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px auto;
+  max-width: 300px;
+}
+
+.box-title {
+  font-weight: bold;
+  border-bottom: 1px solid #00ffcc;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+/* S ADMIN BOX */
+.admin-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: black;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.admin-box img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.admin-info {
+  flex: 1;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.admin-box button {
+  background: #66d9cc;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.admin-expand {
+  display: none;
+  background: #1e293b;
+  border: 2px solid #00ffcc;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 500px;
+  margin: auto;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .middle {
+    overflow-x: auto;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -99,17 +171,21 @@
 
   <div class="middle">
     <button onclick="page('about')">About</button>
-    <button onclick="page('updates')">Updates</button>
     <button onclick="page('settings')">Settings</button>
+    <button onclick="page('sadmin')">S Admin</button>
   </div>
 
   <div class="right">
-    Guest<br>New User
+    Guest<br>New User<br>
+    <button onclick="toggleApp()" id="minBtn">Minimize</button>
   </div>
 </div>
 
-<div class="content" id="content">
-  <h1>Welcome To My First Website 👋</h1>
+<!-- APP CONTENT -->
+<div id="app">
+  <div class="content" id="content">
+    <h1>Welcome To My First Website 👋</h1>
+  </div>
 </div>
 
 <div class="footer">
@@ -117,10 +193,38 @@
 </div>
 
 <script>
+let minimized = false;
+
+function toggleApp(){
+  let app = document.getElementById("app");
+  let btn = document.getElementById("minBtn");
+
+  if(!minimized){
+    app.style.opacity = "0";
+    app.style.transform = "translateY(20px)";
+    
+    setTimeout(()=>{
+      app.style.display = "none";
+    }, 300);
+
+    btn.innerText = "Open";
+    minimized = true;
+  } else {
+    app.style.display = "block";
+
+    setTimeout(()=>{
+      app.style.opacity = "1";
+      app.style.transform = "translateY(0)";
+    }, 10);
+
+    btn.innerText = "Minimize";
+    minimized = false;
+  }
+}
+
 function page(p){
   let c = document.getElementById("content");
 
-  // fade out
   c.classList.add("fade-out");
 
   setTimeout(() => {
@@ -129,40 +233,71 @@ function page(p){
       c.innerHTML = "<h1>About</h1><p>This is about Shinywave 😎</p>";
     }
 
-    if(p=="updates"){
-      c.innerHTML = `
-        <h1>Updates</h1>
-
-        <div class="box">
-          <div class="box-title">Update V2.4</div>
-          TesT
-        </div>
-
-        <div class="box">
-          <div class="box-title">Update V2.3</div>
-          Added new UI
-        </div>
-
-        <div class="box">
-          <div class="box-title">Update V2.2</div>
-          Bug fixes
-        </div>
-      `;
-    }
-
     if(p=="settings"){
       c.innerHTML = `
-        <h1>Settings</h1>
-        <p>More settings coming soon ⚙️</p>
-        <button onclick="alert('Dark mode already enabled 😎')">Toggle Theme</button>
+        <h1>Settings ⚙️</h1>
+
+        <div class="box">
+          <div class="box-title">User</div>
+          Username: Guest<br>
+          Role: New User
+        </div>
+
+        <div class="box">
+          <div class="box-title">Theme</div>
+          <button onclick="alert('Dark mode active 😎')">Toggle Theme</button>
+        </div>
       `;
     }
 
-    // fade in
+    if(p=="sadmin"){
+      c.innerHTML = `
+        <h1>S Admin 🛠️</h1>
+
+        <div class="admin-box">
+          <img src="https://via.placeholder.com/60">
+          <div class="admin-info">
+            <h2>Example</h2>
+            <p>Descriptions EEEEEEEEEEEE...</p>
+          </div>
+          <button onclick="toggleBox(this)">Open</button>
+        </div>
+
+        <div class="admin-expand">
+          <p>More info about this system 🔥</p>
+        </div>
+
+        <div class="admin-box">
+          <img src="https://via.placeholder.com/60">
+          <div class="admin-info">
+            <h2>Update V2.4</h2>
+            <p>New features added</p>
+          </div>
+          <button onclick="toggleBox(this)">Open</button>
+        </div>
+
+        <div class="admin-expand">
+          <p>Added UI improvements and bug fixes ⚡</p>
+        </div>
+      `;
+    }
+
     c.classList.remove("fade-out");
     c.classList.add("fade-in");
 
   }, 200);
+}
+
+function toggleBox(btn){
+  let expand = btn.parentElement.nextElementSibling;
+
+  if(expand.style.display === "block"){
+    expand.style.display = "none";
+    btn.innerText = "Open";
+  } else {
+    expand.style.display = "block";
+    btn.innerText = "Close";
+  }
 }
 </script>
 
